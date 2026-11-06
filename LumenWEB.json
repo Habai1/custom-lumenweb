@@ -1,0 +1,122 @@
+{
+  "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+  "meta": {
+    "version": "PTDL_v2",
+    "update_url": null
+  },
+  "exported_at": "2026-03-13T21:26:55+00:00",
+  "name": "LumenWEB",
+  "author": "contact@lumenvm.cloud",
+  "description": "Easily set up websites using LumenWEB.",
+  "features": null,
+  "docker_images": {
+    "Latest": "ghcr.io\/lumendevelopment\/lumenweb:latest"
+  },
+  "file_denylist": [],
+  "startup": "# Powered by LumenWEB",
+  "config": {
+    "files": "{}",
+    "startup": "{\r\n    \"done\": [\r\n        \"Starting LumenWEB\"\r\n    ]\r\n}",
+    "logs": "{}",
+    "stop": "^C^C"
+  },
+  "scripts": {
+    "installation": {
+      "script": null,
+      "container": "alpine:3.4",
+      "entrypoint": "ash"
+    }
+  },
+  "variables": [
+    {
+      "name": "Website Domain",
+      "description": "Your website's domain name. Ensure a CNAME record points to web.lumenvm.cloud. You can put multiple domains separated by a comma. Make sure you enable this in the domain mode variable.",
+      "env_variable": "DOMAIN",
+      "default_value": "",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "nullable|string",
+      "field_type": "text"
+    },
+    {
+      "name": "Website root",
+      "description": "The webroot directory for your website. This must be in \/home\/container\/.",
+      "env_variable": "WEBROOT",
+      "default_value": "\/home\/container\/webroot",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|starts_with:\/home\/container",
+      "field_type": "text"
+    },
+    {
+      "name": "Webserver Software",
+      "description": "Select the software to run your web server.",
+      "env_variable": "SOFTWARE",
+      "default_value": "php 8.4",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|in:php 8.4,php 8.3,php 8.2,php 8.1,php 8.0,php 7.4,java 21,java 25,Java 21,Java 25,python,vercel\/serve,Astro,NextJS,React,custom",
+      "field_type": "text"
+    },
+    {
+      "name": "Java Version",
+      "description": "Select the JDK version to use (21 or 25). Can be used with custom commands or when SOFTWARE is set to java.",
+      "env_variable": "JAVA_VERSION",
+      "default_value": "21",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|in:21,25",
+      "field_type": "text"
+    },
+    {
+      "name": "JAR File",
+      "description": "The name of the JAR file to execute inside your webroot.",
+      "env_variable": "JARFILE",
+      "default_value": "app.jar",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "nullable|string",
+      "field_type": "text"
+    },
+    {
+      "name": "Java Arguments",
+      "description": "Additional JVM arguments to pass when starting Java (e.g. -Xms128M -Xmx512M).",
+      "env_variable": "JAVA_ARGS",
+      "default_value": "",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "nullable|string",
+      "field_type": "text"
+    },
+    {
+      "name": "Custom command",
+      "description": "Enter the custom command to run. This will automatically overwrite the SOFTWARE variable.",
+      "env_variable": "CUSTOM_COMMAND",
+      "default_value": "",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "nullable|string",
+      "field_type": "text"
+    },
+    {
+      "name": "Overwrite IP",
+      "description": "This allows admins to overwrite the IP address shown in different scenarios. Useful when running behind a tunnel\/proxy.",
+      "env_variable": "OVERWRITE_IP",
+      "default_value": "",
+      "user_viewable": false,
+      "user_editable": false,
+      "rules": "nullable|ipv4",
+      "field_type": "text"
+    },
+    {
+      "name": "Overwrite BANNER",
+      "description": "This allows admin to change the banner shown when starting up. Use \\n for newlines.",
+      "env_variable": "OVERWRITE_BANNER",
+      "default_value": "",
+      "user_viewable": false,
+      "user_editable": false,
+      "rules": "nullable|string",
+      "field_type": "text"
+    }
+  ]
+}

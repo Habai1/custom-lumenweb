@@ -1,0 +1,15 @@
+# This is an example file to show how to build the docker image for LumenWEB. You can either load it locally or push it to a remote registry.
+# Edit & rename it, then run it with `bash scripts/build.sh`
+# Building it locally using docker buildx (adapt and uncomment before use):
+
+docker buildx build -t edited-lumenweb:latest ./src --load
+
+# This will build the image as edited-lumenweb:latest and it will then proceed to extract the archive and load it to the local docker engine.
+
+# Pushing to a remote registry for multi-node usage.
+# The example bellow will build it using buildx and it will push it to the tagged registry.
+# MAKE SURE YOU'RE LOGGED IN TO THE REGISTRY.
+
+#docker buildx build -t amazing-registry.dev/cool-person/edited-lumenweb:latest ./src --push
+
+# You can add something like `--platform linux/amd64,linux/arm64` to the command to build cross-architecture images.
